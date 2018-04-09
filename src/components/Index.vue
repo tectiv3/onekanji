@@ -14,11 +14,20 @@ export default {
             list: [],
             kanji: null,
             radicalFrame: 0,
+            loading: true,
         }
     },
 
     created() {
         this.getGrade(1);
+    },
+
+    mounted() {
+        document.body.addEventListener('keyup', e => {
+            if (e.keyCode === 78) {
+               this.loading = true; this.getKanji(this.list[Math.floor(Math.random()*this.list.length)].ka_utf);
+            }
+        })
     },
 
     methods: {
@@ -36,8 +45,8 @@ export default {
 
         getKanji: function(utf) {
             api.get('/kanji/'+utf).then( (response) => {
-                console.log(response);
                 this.kanji = response;
+                this.loading = false;
             }).catch( this._handleError );
         },
 
@@ -66,7 +75,7 @@ export default {
         <div v-if="error" class="alert alert-danger">
             {{ error }}
         </div>
-        <div v-if="kanji" class="row">
+        <div v-if="kanji && !loading" class="row">
             <div class="col-sm mt-2 mb-2">
                 <img width="230" :src="kanji.gothic_source">
             </div>
@@ -80,7 +89,7 @@ export default {
                     <p class="lead">{{ kanji.onyomi_ja }}<br v-if="kanji.onyomi_ja">{{ kanji.onyomi }}</p>
             </div>
         </div>
-        <div v-if="kanji" class="row">
+        <div v-if="kanji && !loading" class="row">
             <div class="col-sm">
                 <div class="row">
                     <div class="col">
@@ -133,6 +142,9 @@ export default {
                     </ul>
                 </div>
             </div>
+        </div>
+        <div v-else class="d-flex justify-content-center align-items-center" style="height: 400px">
+            <h1><i class="fa fa-lg fa-refresh fa-spin"></i></h1>
         </div>
     </div>
 </template>
