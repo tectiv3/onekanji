@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/GeertJohan/go.rice"
+	// "github.com/GeertJohan/go.rice"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
@@ -61,8 +61,8 @@ func main() {
 			return
 		}
 	})
-
-	r.Method(http.MethodGet, "/*", http.FileServer(rice.MustFindBox("dist").HTTPBox()))
+	// rice.MustFindBox("dist").HTTPBox()
+	r.Method(http.MethodGet, "/*", http.FileServer(http.Dir("dist")))
 
 	http.ListenAndServe(":7780", r)
 }
