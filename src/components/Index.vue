@@ -33,7 +33,7 @@ export default {
     methods: {
 
         _handleError: function(error) {
-            this.error = error;
+            this.error = error.message || error;
         },
 
         getGrade: function(grade) {
@@ -150,7 +150,6 @@ export default {
 </template>
 
 <style>
-
 .rad-anim img {
     cursor: pointer;
     width:64px; 
