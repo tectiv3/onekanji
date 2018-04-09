@@ -1,0 +1,13 @@
+{
+  "name": "onekanji",
+  "version": "",
+  "description": "display kanji",
+  "main": "onekanji",
+  "author": "",
+  "license": "",
+  "language":"go",
+  "scripts": {
+     "start": "onekanji"
+    },
+   "dependency": null
+}
