@@ -62,15 +62,15 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container p-0">
         <div v-if="error" class="alert alert-danger">
             {{ error }}
         </div>
         <div v-if="kanji" class="row">
-            <div class="col-sm mt-4 mb-2">
+            <div class="col-sm mt-2 mb-2">
                 <img width="230" :src="kanji.gothic_source">
             </div>
-            <div class="col-sm mt-4">
+            <div class="col-sm mt-2">
                     <h1 class="display-4">{{ kanji.meaning }}</h1>
                     <span class="badge float-right">kunyomi</span>
                     <hr>
@@ -137,8 +137,7 @@ export default {
     </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style>
 
 .rad-anim img {
     cursor: pointer;
