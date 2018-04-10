@@ -55,6 +55,7 @@ export default {
             var audio = parent.children[1];
             audio.play();
         },
+
         startRadicalAnimation: function() {
             setTimeout(() => {
                 this.radicalFrame = 1;
